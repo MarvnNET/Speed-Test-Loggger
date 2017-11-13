@@ -275,7 +275,7 @@ namespace SpeedTest
                                 continue;
                             }
 
-                            string[] s = line.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                            string[] s = line.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
 
                             if (s.Length > 5)
                             {
@@ -327,19 +327,19 @@ namespace SpeedTest
             {
                 using (StreamWriter writer = new StreamWriter(fileName))
                 {
-                    writer.WriteLine("Index,Time(U),Time(S),Speed(B),Speed(S),IP,Message,Status");
+                    writer.WriteLine("Index;Time(U);Time(S);Speed(B);Speed(S);IP;Message;Status");
 
                     foreach (ListViewItem item in g_ConnectionLog)
                     {
                         DateTime time = (DateTime)item.Tag;
 
-                        writer.WriteLine(item.ImageIndex.ToString() + "," + // Index
-                            ToUnixTime(time).ToString() + "," + // Time (Unix Timestamp)
-                            ConvertTime(time) + "," + // Time (String)
-                            item.SubItems[5].Text + "," + // Speed (Bytes)
-                            item.SubItems[1].Text + "," + // Speed (String)
-                            item.SubItems[2].Text + "," + // IP
-                            item.SubItems[3].Text + "," + // Message
+                        writer.WriteLine(item.ImageIndex.ToString() + ";" + // Index
+                            ToUnixTime(time).ToString() + ";" + // Time (Unix Timestamp)
+                            ConvertTime(time) + ";" + // Time (String)
+                            item.SubItems[5].Text + ";" + // Speed (Bytes)
+                            item.SubItems[1].Text + ";" + // Speed (String)
+                            item.SubItems[2].Text + ";" + // IP
+                            item.SubItems[3].Text + ";" + // Message
                             item.SubItems[4].Text); // Status
                     }
                 }
